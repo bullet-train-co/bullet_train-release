@@ -30,19 +30,21 @@ module BulletTrain
         exit
       end
 
-      puts "Bumping Ruby gem version."
-      puts output = `bump patch`
-      version = output.chomp.lines.last.chomp
-      puts "Bumped to #{version}."
-
-      # Update the `package.json` version.
-      puts "Bumping npm package version."
-      text = File.read("package.json")
-      new_contents = text.gsub(/\"version\": \".*\"/, "\"version\": \"#{version}\"")
-      File.open("package.json", "w") { |file| file.puts new_contents }
       unless dry_run
+        puts "Bumping Ruby gem version."
+        puts output = `bump patch`
+        version = output.chomp.lines.last.chomp
+        puts "Bumped to #{version}."
+
+        # Update the `package.json` version.
+        puts "Bumping npm package version."
+        text = File.read("package.json")
+        new_contents = text.gsub(/\"version\": \".*\"/, "\"version\": \"#{version}\"")
+        File.open("package.json", "w") { |file| file.puts new_contents }
         `git add ./package.json`
         stream "git commit -m \"Bumping npm package to #{version}.\""
+      else
+        puts "Skipping step to bump Ruby gem version and package.json version."
       end
 
       unless dry_run
