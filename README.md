@@ -1,8 +1,6 @@
 # BulletTrain::Release
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bullet_train/release`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+An isolated layer for handling Bullet Train package releases in one place.
 
 ## Installation
 
@@ -16,7 +14,16 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+Navigate to the gem of your choice and run the following to release your gem:
+```shell
+# ⚠️ Running this command will push your changes to GitHub!
+$ rake app:bullet_train:release
+
+# If you just want to test run the logic and build
+# the packages without pushing your changes, add `dry-run`
+$ rake app:bullet_train:release[dry-run]
+```
+
 
 ## Development
 
@@ -26,7 +33,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bullet_train-release.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bullet-train-co/bullet_train-release.
 
 ## License
 
